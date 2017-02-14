@@ -25,13 +25,13 @@ func loadResource(file string) ([]byte, error) {
 // runs the grunt-task
 func getResources() (*Resources, error) {
 	// load partials
-	home, e1 := loadResource("view/home.html")
-	blog, e2 := loadResource("view/blog.html")
-	about, e3 := loadResource("view/about.html")
-	connect, e4 := loadResource("view/connect.html")
+	home, e1 := loadResource("../view/home.html")
+	blog, e2 := loadResource("../view/blog.html")
+	about, e3 := loadResource("../view/about.html")
+	connect, e4 := loadResource("../view/connect.html")
 
 	// load scripts
-	contentScript, e5 := loadResource("js/content.js")
+	contentScript, e5 := loadResource("../js/content.js")
 
 	// error checking
 	if e1 != nil {

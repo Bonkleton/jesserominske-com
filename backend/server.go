@@ -18,11 +18,11 @@ func handler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		// get template function based on index and execute to load page
-		t, _ := template.ParseFiles("index.html")
+		t, _ := template.ParseFiles("../index.html")
 		t.Execute(w, g)
 
 	} else if r.URL.Path == "/favicon.ico" { // load favicon.ico because who cares
-		p, err := ioutil.ReadFile(r.URL.Path[1:])
+		p, err := ioutil.ReadFile("../favicon.ico")
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
