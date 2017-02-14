@@ -1,0 +1,37 @@
+<!-- Only page that is ever loaded by server :D -->
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+        <title>Jesse Rominske</title>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <ul id="nav" class="nav navbar-nav">
+                    <li class="active"><a href="home">Home</a></li>
+                    <li class="active"><a href="blog">Blog</a></li>
+                    <li class="active"><a href="about">About Me</a></li>
+                    <li class="active"><a href="connect">Connect</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <h1>Jesse Rominske</h1>
+        
+        <div id="content"><!-- container for page contetnt  --></div>
+
+        </body>
+        <!-- Resources from other files are inserted here by the server -->
+        {{printf "%s" .Home}}
+        {{printf "%s" .Blog}}
+        {{printf "%s" .About}}
+        {{printf "%s" .Connect}}
+        <script type="text/javascript">{{printf "%s" .ContentScript}}</script>
+</html>
