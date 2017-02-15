@@ -4,15 +4,6 @@ import (
 	"io/ioutil"
 )
 
-// container for the resources we will need to load into index.html
-type Resources struct {
-	Home          []byte
-	Blog          []byte
-	About         []byte
-	Connect       []byte
-	ContentScript []byte
-}
-
 // loads a partial
 func loadResource(file string) ([]byte, error) {
 	body, err := ioutil.ReadFile(file)
@@ -23,34 +14,31 @@ func loadResource(file string) ([]byte, error) {
 }
 
 // runs the grunt-task
-func getResources() (*Resources, error) {
-	// load partials
-	home, e1 := loadResource("../view/home.html")
-	blog, e2 := loadResource("../view/blog.html")
-	about, e3 := loadResource("../view/about.html")
-	connect, e4 := loadResource("../view/connect.html")
+func runGrunt() (map[string]string, error) {
 
-	// load scripts
-	contentScript, e5 := loadResource("../js/content.js")
+	// list of keys and paths
+	paths := map[string]string{
+		"Style":         "../css/css.css",
+		"Home":          "../view/home.html",
+		"Blog":          "../view/blog.html",
+		"About":         "../view/about.html",
+		"Connect":       "../view/connect.html",
+		"ContentScript": "../js/content.js"}
 
-	// error checking
-	if e1 != nil {
-		return nil, e1
-	} else if e2 != nil {
-		return nil, e2
-	} else if e3 != nil {
-		return nil, e3
-	} else if e4 != nil {
-		return nil, e4
-	} else if e5 != nil {
-		return nil, e5
+	// declare new map to be returned
+	g := make(map[string]string)
+
+	// replace the paths with the loaded resources
+	for k, v := range paths {
+		// load the resource
+		r, e := loadResource(v)
+		if e != nil {
+			return nil, e
+		}
+
+		// put resource into returned map
+		g[k] = string(r)
 	}
 
-	// return Grunt object of resources to insert
-	return &Resources{
-		Home:          home,
-		Blog:          blog,
-		About:         about,
-		Connect:       connect,
-		ContentScript: contentScript}, nil
+	return g, nil
 }

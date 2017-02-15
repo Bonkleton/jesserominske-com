@@ -1,0 +1,22 @@
+body {
+	margin: 0px;
+	overflow: hidden;
+}
+
+.nav .navbar .navbar-default .navbar-nav {
+	display: inline-block;
+	float: none;
+	text-align: center;
+	vertical-align: middle;
+	margin-left: 25%;
+    margin-right: 25%;
+}
+
+.header {
+    text-align: center;
+}
+
+.content {
+    margin-left: 25%;
+    margin-right: 25%;
+}
