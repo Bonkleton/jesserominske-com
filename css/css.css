@@ -1,17 +1,26 @@
+html { 
+  overflow-y: scroll; 
+}
+
 .body {
 	padding-top: 20px;
     padding-bottom: 20px;
-	overflow: hidden;
 	font-family: "Droid Sans";
+	color: #5a5a5a;
 }
 
 .container {
 	padding-right: 20px;
     padding-left: 20px;
-    margin-right: auto;
-    margin-left: auto;
+    margin-right: 20%;
+    margin-left: 20%;
 }
 
+.footer {
+    height: 60px;
+}
+
+/* Navbar styling */
 .navbar .navbar-inverse {
 	display: inline-block;
 	float: none;
@@ -29,4 +38,47 @@
 .content {
     margin-left: auto;
     margin-right: auto;
+}
+
+/* About View styling */
+.featurette-divider {
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+.featurette {
+  padding-top: 120px;
+  overflow: hidden;
+}
+
+.featurette-image {
+  margin-top: -120px;
+}
+
+.featurette-image.pull-left {
+  margin-right: 40px;
+}
+
+.featurette-image.pull-right {
+  margin-left: 40px;
+}
+
+.featurette-heading {
+  font-size: 50px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+/* Connect View styling */
+.linksList {
+    float: left;
+}
+
+.twitterborder {
+    float: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
