@@ -32,15 +32,33 @@ func loadPartials() (map[string]string, error) {
 
 //HTTP request handler
 func handler(wrt http.ResponseWriter, req *http.Request) {
-	if req.URL.Path == "/favicon.ico" { //load favicon.ico because who cares
+	fmt.Println(req.URL.Path)
+	if req.URL.Path == "/" { //load the index
+		//grab all partials
+		partials, err := loadPartials()
+		if err != nil {
+			http.Error(wrt, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		//get template function based on index and execute to load page
+		t, _ := template.ParseFiles("../index.html")
+		t.Execute(wrt, partials)
+	} else if req.URL.Path == "/favicon.ico" { //load favicon.ico because who cares
 		f, err := ioutil.ReadFile("../favicon.ico")
 		if err != nil {
 			http.Error(wrt, err.Error(), http.StatusInternalServerError)
 			return
 		}
 		fmt.Fprintf(wrt, "%s", f)
+	} else if req.URL.Path[:11] == "/css/images" { //if we want to load an image
+		f, err := ioutil.ReadFile("../" + req.URL.Path)
+		if err != nil {
+			http.Error(wrt, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		fmt.Fprintf(wrt, "%s", f)
 	} else { //in all other cases load the index
-		//run grunt task to grab all partials
+		//grab all partials
 		partials, err := loadPartials()
 		if err != nil {
 			http.Error(wrt, err.Error(), http.StatusInternalServerError)
