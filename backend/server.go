@@ -9,11 +9,12 @@ import (
 
 //list of keys and paths for resource loading
 var paths = map[string]string{
-	"Style":   "../css/css.css",
-	"Blog":    "../view/blog.html",
-	"About":   "../view/about.html",
-	"Connect": "../view/connect.html",
-	"Wiki":    "../view/wiki.html"}
+	"Style":         "../css/css.css",
+	"Blog":          "../view/blog.html",
+	"About":         "../view/about.html",
+	"Connect":       "../view/connect.html",
+	"Wiki":          "../view/wiki.html",
+	"ContentScript": "../js/content.js"}
 
 //loads all relevant partials
 func loadPartials() (map[string]string, error) {
