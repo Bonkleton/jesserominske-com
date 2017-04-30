@@ -13,7 +13,6 @@ var paths = map[string]string{
 	"Blog":          "../view/blog.html",
 	"About":         "../view/about.html",
 	"Connect":       "../view/connect.html",
-	"Wiki":          "../view/wiki.html",
 	"ContentScript": "../js/content.js"}
 
 //loads all relevant partials

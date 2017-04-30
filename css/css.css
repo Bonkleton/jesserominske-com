@@ -1,11 +1,16 @@
 html { 
-  overflow-y: scroll; 
+  overflow: scroll;
+}
+::-webkit-scrollbar { 
+    display: none; 
 }
 .body {
   padding-top: 20px;
   padding-bottom: 20px;
 	font-family: "Droid Sans";
 	color: #5a5a5a;
+	height: 100%;
+  width: 100%;
 }
 .container {
 	padding-right: 20px;
@@ -66,4 +71,19 @@ html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+/* Blog view styling */
+.blogEntries {
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 700px;
+}
+.blogBody {
+  text-align: justify;
+  text-indent: 100px;
+  padding-right: 25px;
+  max-height: 700px;
+  overflow-y: auto;
 }
