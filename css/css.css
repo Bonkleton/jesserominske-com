@@ -1,8 +1,8 @@
-html { 
+html {
   overflow: scroll;
 }
-::-webkit-scrollbar { 
-    display: none; 
+::-webkit-scrollbar {
+    display: none;
 }
 .body {
   padding-top: 20px;
@@ -34,6 +34,10 @@ html {
 .navbar .container-fluid {
 	margin-left: auto;
   margin-right: auto;
+}
+.navbar-brand {
+  cursor: pointer;
+  cursor: hand;
 }
 
 /* About View styling */
@@ -86,4 +90,28 @@ html {
   padding-right: 25px;
   max-height: 700px;
   overflow-y: auto;
+}
+.blogForm {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    width: 80%;
+}
+.flexSplitLeftRight {
+	display: flex;
+	flex-direction: row;
+	justify-content: space between;
+	-webkit-justify-content: space-between;
+	width: 100%;
+}
+.closeButton {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.closeButton:hover, .closeButton:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }

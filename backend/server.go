@@ -6,7 +6,6 @@ import (
 	"github.com/kabukky/httpscerts"
 	_ "github.com/go-sql-driver/mysql"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"text/template"
 )
@@ -18,14 +17,16 @@ var dbErr error
 var paths = map[string]string{
 	"Style":         "../css/css.css",
 	"Blog":          "../view/blog.html",
+	"AddBlogModal":  "../view/addBlog.html",
 	"About":         "../view/about.html",
 	"Connect":       "../view/connect.html",
-	"ContentScript": "../js/content.js"}
+	"ContentScript": "../js/content.js",
+	"ModelScript":   "../js/model.js",
+  "BlogScript":    "../js/blog.js"}
 
 //loads all relevant partials
 func loadPartials() (map[string]string, error) {
 	g := make(map[string]string)
-
 	//load resources from paths
 	for key, path := range paths {
 		body, err := ioutil.ReadFile(path)
@@ -78,6 +79,13 @@ func redirectToHttps(res http.ResponseWriter, req *http.Request) {
 	http.Redirect(res, req, "localhost:8081"+req.RequestURI, http.StatusMovedPermanently)
 }
 
+//basic panic response to error, saving lines
+func checkError(e error) {
+	if e != nil {
+		panic(e)
+	}
+}
+
 //start the server
 func main() {
 	//TODO: actually get TLS working, dork
@@ -87,22 +95,16 @@ func main() {
 	//if they are not available, generate new ones
 	if err != nil {
 		err = httpscerts.Generate("../ssl/cert.pem", "../ssl/key.pem", "localhost:8081")
-		if err != nil {
-			log.Fatal("Error: Couldn't create https certs.")
-		}
+		checkError(err)
 	}
 
 	//create sql.DB and check for errors
   db, dbErr = sql.Open("mysql", dbOptions["dbAdmin"] + ":" + dbOptions["dbPWord"] + "@/" + dbOptions["dbName"])
-  if dbErr != nil {
-    panic(dbErr.Error())
-  }
+	checkError(dbErr)
   defer db.Close()
   //test the connection to the database
   dbErr = db.Ping()
-  if dbErr != nil {
-    panic(dbErr.Error())
-  }
+  checkError(dbErr)
 
 	//create a new ServeMux for HTTP connections (delete once TLS works)
 	httpMux := http.NewServeMux()

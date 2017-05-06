@@ -27,36 +27,10 @@ func signature(u string, p string) (bool, error) {
 	return true, nil
 }
 
-//finds rune in string
-func runeInString(s string, r rune) (int, bool) {
-	for i,c := range s {
-  	if c == r {
-			return i, true
-		}
-	}
-	fmt.Println("Rune " + string(r) + " not found in string " + s)
-	return 0, false
-}
-
-//blog body formatter (tail-recursive)
-func paragraphize(body string, result string) (string, string) {
-	index, isInBody := runeInString(body, '\n')
-	//if there are no newlines, just wrap the body
-	if !isInBody {
-		return "", "<p class='lead'>\n" + body + "\n</p>\n"
-	} else {
-		wrapped := "<p class='lead'>\n" + body[:index] + "\n</p>\n"
-		//if the newline is the end of the body, we're done
-		if len(body[index:]) <= 1 {
-			return "", result + wrapped
-		}
-		//chop off current paragraph, add wrapped paragraph to result, and call again
-		return paragraphize(body[index + 1:], result + wrapped)
-	}
-}
-
 //request handler for blog
+//TODO: make this agree with model
 func blogHandler(res http.ResponseWriter, req *http.Request) {
+	fmt.Println("blog")
 	if req.Method != "POST" {
     http.Redirect(res, req, "localhost:8080", 301) //change this once appropriate
     return
@@ -76,8 +50,14 @@ func blogHandler(res http.ResponseWriter, req *http.Request) {
 	//if signature succeeded, get the other stuff
 	//title := req.FormValue("title")
   //date := req.FormValue("date")
-	//body := req.FormValue("body")
-	//bodyHTML := paragraphize(body)
+	//body := req.FormValue("body") //this will be paragraphized by the front end
 	//create new file for bodyHTML
+	//bodyPath := "../blog/test.html"
+	//err := ioutil.WriteFile(bodyPath, body, 0644)
 	//insert into db new entry with path to the file made from bodyHTML
+	//_, err = db.Exec("INSERT INTO blog(title, date, path) VALUES(?, ?, ?)", title, date, bodyPath)
+  //if err != nil {
+  //  http.Error(res, "Server error - unable to create your blog entry.", 500)
+  //  return
+  //}
 }

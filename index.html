@@ -20,9 +20,9 @@
             <nav id="nav" class="navbar navbar-inverse">
                 <div class="container-fluid">
                     <div class="navbar-header pull-left">
-                        <a class="navbar-brand" title="I'm a nerd" href="about">About Me</a>
-                        <a class="navbar-brand" title="Whenever I feel like it" href="blog">Blog</a>
-                        <a class="navbar-brand" title="I don't bite!" href="connect">Connect</a>
+                        <span class="navbar-brand" title="I'm a nerd" name="about">About Me</span>
+                        <span class="navbar-brand" title="Whenever I feel like it" name="blog">Blog</span>
+                        <span class="navbar-brand" title="I don't bite!" name="connect">Connect</span>
                     </div>
                     <div class="navbar-header pull-right">
                         <a class="navbar-brand" title="Coming soon">Vaznukpedia</a>
@@ -39,9 +39,16 @@
     </body>
     <!-- Resources from other files are inserted here by the server -->
     {{printf "%s" .Blog}}
+    {{printf "%s" .AddBlogModal}}
     {{printf "%s" .About}}
     {{printf "%s" .Connect}}
     <script id="contentScript" type="text/javascript">
         {{printf "%s" .ContentScript}}
+    </script>
+    <script id="modelScript" type="text/javascript">
+        {{printf "%s" .ModelScript}}
+    </script>
+    <script id="blogScript" type="text/javascript">
+        {{printf "%s" .BlogScript}}
     </script>
 </html>
