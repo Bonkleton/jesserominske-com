@@ -42,6 +42,12 @@
     {{printf "%s" .AddBlogModal}}
     {{printf "%s" .About}}
     {{printf "%s" .Connect}}
+    <script id="initScript" type="text/javascript">
+      var website;
+      $(document).ready(function() {
+        website = new content().init();
+      });
+    </script>
     <script id="contentScript" type="text/javascript">
         {{printf "%s" .ContentScript}}
     </script>
@@ -50,5 +56,8 @@
     </script>
     <script id="blogScript" type="text/javascript">
         {{printf "%s" .BlogScript}}
+    </script>
+    <script id="addBlogScript" type="text/javascript">
+        {{printf "%s" .AddBlogScript}}
     </script>
 </html>

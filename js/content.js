@@ -15,7 +15,7 @@ class content {
     }
   }
   init() {
-    this.model = new model();
+    this.model = new model(this);
     //magical incantation
     var that = this;
     //initialize homepage on first load
@@ -29,7 +29,3 @@ class content {
     });
   }
 }
-var website;
-$(document).ready(function() {
-  website = new content().init();
-});

@@ -22,7 +22,8 @@ var paths = map[string]string{
 	"Connect":       "../view/connect.html",
 	"ContentScript": "../js/content.js",
 	"ModelScript":   "../js/model.js",
-  "BlogScript":    "../js/blog.js"}
+	"BlogScript":    "../js/blog.js",
+	"AddBlogScript": "../js/addBlog.js"}
 
 //loads all relevant partials
 func loadPartials() (map[string]string, error) {
@@ -111,14 +112,14 @@ func main() {
 	httpMux.Handle("/", http.HandlerFunc(indexHandler))
 	httpMux.Handle("/favicon.ico", http.HandlerFunc(faviconHandler))
 	httpMux.Handle("/css/images/", http.HandlerFunc(imageHandler))
-	httpMux.Handle("/blog/post/", http.HandlerFunc(blogHandler)) //in blog.go
+	httpMux.Handle("/blog/", http.HandlerFunc(blogHandler)) //in blog.go
 
 	//create a new ServeMux for HTTPS connections
 	httpsMux := http.NewServeMux()
 	httpsMux.Handle("/", http.HandlerFunc(indexHandler))
 	httpsMux.Handle("/favicon.ico", http.HandlerFunc(faviconHandler))
 	httpsMux.Handle("/css/images/", http.HandlerFunc(imageHandler))
-	httpsMux.Handle("/blog/post/", http.HandlerFunc(blogHandler)) //in blog.go
+	httpsMux.Handle("/blog/", http.HandlerFunc(blogHandler)) //in blog.go
 
 	//start HTTPS server in goroutine
 	go http.ListenAndServeTLS(":8081", "../ssl/cert.pem", "../ssl/key.pem", httpsMux)
