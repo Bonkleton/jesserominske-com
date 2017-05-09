@@ -29,15 +29,19 @@ class addBlogController {
     var that = this;
     //event handler for blog submit
     $("#addBlogSubmit").on("click", function() {
+      var d = new Date();
+      var blogDate = d.getMonth().toString() + "/"
+                     + d.getDate().toString() + "/"
+                     + d.getFullYear().toString();
       var requestBody = {
         title: that.titleInput.val(),
-        date: "Today's date",
+        date: blogDate,
         body: that.paragraphize([String(that.bodyInput.val()), ""]),
         uname: that.unameInput.val(),
         pword: that.pwordInput.val()
       };
       var submitCallback = function() {
-        alert(JSON.stringify(requestBody));
+        alert("ayy");
       };
       that.website.model.addBlog(requestBody, submitCallback, this);
     });
