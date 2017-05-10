@@ -7,7 +7,7 @@ class blogController {
   renderBlogs(blogs) {
     var blogsHTML = "";
     for (var i = 0; i < blogs.length; i++) {
-      blogsHTML = '<div class="blogContainer">\n'
+      blogsHTML = '<div class="blogContainer" name="'+ blogs[i].Id +'">\n'
                   +'<div class="blogHeader">\n'
                   + '<h2 class="header pull-left">' + blogs[i].Title + '</h2>\n</div>'
                   + '<div class="blogDate pull-right">' + blogs[i].Date + '</div>'
