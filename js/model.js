@@ -4,7 +4,6 @@ class model {
     this.website = website;
   }
 	//generalized AJAX request
-	//TODO: make this agree with blogHandler
 	sendRequest(type, route, data, callback, context) {
 		$.ajax({
 			url: route,
@@ -18,6 +17,10 @@ class model {
 				callback.apply(context, arguments);
 			}
 		});
+	}
+	//wrapper for getting blogs
+	getBlogs(callback, context) {
+		this.sendRequest("GET", "blog/post", {}, callback, context);
 	}
 	//wrapper for submitting a blog
 	addBlog(data, callback, context) {

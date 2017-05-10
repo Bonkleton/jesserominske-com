@@ -90,25 +90,36 @@ html {
   padding-right: 25px;
   max-height: 700px;
   overflow-y: auto;
+  width: 100%;
 }
+
+/* Add Blog view styling */
 .blogForm {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    width: 80%;
+  background-color: #fefefe;
+  padding: 20px;
+  width: 100%;
+  table-layout: fixed;
 }
-.flexSplitLeftRight {
-	display: flex;
-	flex-direction: row;
-	justify-content: space between;
-	-webkit-justify-content: space-between;
-	width: 100%;
+.formInput {
+  text-align: right;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.bodyFormContainer {
+  text-align: center;
+  padding: 20px;
+}
+.buttonContainer {
+  float: right;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 .closeButton {
     color: #aaaaaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
+    padding: 20px;
 }
 .closeButton:hover, .closeButton:focus {
     color: #000;

@@ -1,7 +1,7 @@
 //controller for add blog view
 class addBlogController {
   constructor(website) {
-    this.website = website;
+    this.website = website;;
   }
   //wraps blog body in HTML p tags tail-recursively
   paragraphize(br) {
@@ -40,15 +40,24 @@ class addBlogController {
         uname: that.unameInput.val(),
         pword: that.pwordInput.val()
       };
-      var submitCallback = function() {
-        alert("ayy");
+      var submitCallback = function(response) {
+        if (response.Failure) {
+          alert("Invalid signature!");
+        } else {
+          //render blogs and close modal
+          that.website.controller.renderBlogs(response);
+          $('#addBlogModal').modal('hide');
+          that.website.controller.formControl = {};
+        }
+
       };
       that.website.model.addBlog(requestBody, submitCallback, this);
     });
     //event hanbler for close button
     $("#addBlogCloseButton").on("click", function() {
-      //switch to the blog view
-      that.website.switchView("blogView");
+      //close modal
+      $('#addBlogModal').modal('hide');
+      that.website.controller.formControl = {};
     });
   }
 }
